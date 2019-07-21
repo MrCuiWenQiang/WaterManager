@@ -15,15 +15,11 @@ import java.util.Date;
  * @date 2019-07-19 16:30:48
  */
 @Data
-@TableName("tb_warter_device")
-public class WarterDeviceEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	@TableId
-	private Integer id;
+public class DbUserDeviceEntity  {
+	private Long id;
+	private String userId;
+
 	/**
 	 * 水表编号
 	 */
@@ -52,5 +48,4 @@ public class WarterDeviceEntity implements Serializable {
 	 * 电池更换期限
 	 */
 	private Date replaceDate;
-
 }

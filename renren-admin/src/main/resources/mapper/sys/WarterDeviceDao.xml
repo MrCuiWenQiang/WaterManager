@@ -3,7 +3,7 @@
 
 <mapper namespace="io.renren.modules.sys.dao.WarterDeviceDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="io.renren.modules.sys.entity.WarterDeviceEntity" id="warterDeviceMap">
         <result property="id" column="id"/>
         <result property="no" column="no"/>
@@ -15,5 +15,60 @@
         <result property="replaceDate" column="replace_date"/>
     </resultMap>
 
+    <resultMap id="UserDeviceMap" type="io.renren.modules.sys.entity.DbUserDeviceEntity">
+        <result property="id" column="id"/>
+        <result property="no" column="no"/>
+        <result property="name" column="name"/>
+        <result property="status" column="status"/>
+        <result property="model" column="model"/>
+        <result property="installDate" column="install_date"/>
+        <result property="installUserWorlId" column="install_user_worl_id"/>
+        <result property="replaceDate" column="replace_date"/>
+        <result property="userId" column="user_id"/>
 
+    </resultMap>
+
+    <select id="queryUserDeviceList" resultMap="UserDeviceMap">
+        SELECT
+	ud.user_id,wd.*
+FROM
+	tb_user_device AS ud
+LEFT JOIN tb_warter_device wd ON wd.no = ud.no
+WHERE
+	ud.user_id = #{userId} limit #{oneV},#{twoV}
+    </select>
+
+
+    <select id="queryUserDeviceListCount" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM
+        tb_user_device AS ud
+        LEFT JOIN tb_warter_device wd ON wd.no = ud.no
+        WHERE
+        ud.user_id = #{userId}
+    </select>
+
+
+    <select id="querynoBindDeviceList" resultMap="warterDeviceMap">
+SELECT
+	*
+FROM
+	tb_warter_device AS wd WHERE
+        <if test="no != null">
+            wd.no LIKE '%${no}%' AND
+        </if>
+        wd.no NOT IN(SELECT no FROM tb_user_device ORDER BY no) limit #{oneV},#{twoV}
+ </select>
+    <select id="querynoBindDeviceListCount" resultType="java.lang.Integer">
+  SELECT
+	count(*)
+FROM
+	tb_warter_device AS wd WHERE
+	<if test="no != null">
+        wd.no LIKE '%${no}%' AND
+    </if>
+
+	wd.no NOT IN(SELECT no FROM tb_user_device ORDER BY no)
+    </select>
 </mapper>

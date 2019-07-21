@@ -2,7 +2,7 @@ $(function () {
     $("#jqGrid").jqGrid({
         url: baseURL + 'sys/warterdevice/list',
         datatype: "json",
-        colModel: [			
+        colModel: [
 			{ label: 'id', name: 'id', index: 'id', width: 50, key: true ,hidden:true},
 			{ label: '设备编号', name: 'no', index: 'no', width: 80 },
 			{ label: '设备名称', name: 'name', index: 'name', width: 80 },
@@ -22,14 +22,14 @@ $(function () {
             }},
 			{ label: '安装日期', name: 'installDate', index: 'install_date', width: 80 },
 			{ label: '安装人员', name: 'installUserWorlId',  width: 80 ,sortable:false},
-			{ label: '电池更换期限', name: 'replaceDate', index: 'replace_date', width: 80 }			
+			{ label: '电池更换期限', name: 'replaceDate', index: 'replace_date', width: 80 }
         ],
 		viewrecords: true,
         height: 385,
         rowNum: 10,
 		rowList : [10,30,50],
-        rownumbers: true, 
-        rownumWidth: 25, 
+        rownumbers: true,
+        rownumWidth: 25,
         autowidth:true,
         multiselect: true,
         pager: "#jqGridPager",
@@ -40,16 +40,16 @@ $(function () {
             records: "page.totalCount"
         },
         prmNames : {
-            page:"page", 
-            rows:"limit", 
+            page:"page",
+            rows:"limit",
             order: "order"
         },
         gridComplete:function(){
         	//隐藏grid底部滚动条
-        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         }
     });
-
+   
 });
 
 var vm = new Vue({
@@ -78,7 +78,7 @@ var vm = new Vue({
 			}
 			vm.showList = false;
             vm.title = "修改";
-            
+
             vm.getInfo(id)
 		},
         getDevStatus:function(){
@@ -166,7 +166,7 @@ var vm = new Vue({
 		reload: function (event) {
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
-			$("#jqGrid").jqGrid('setGridParam',{ 
+			$("#jqGrid").jqGrid('setGridParam',{
                 page:page
             }).trigger("reloadGrid");
 		}

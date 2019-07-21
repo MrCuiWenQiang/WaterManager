@@ -1,11 +1,11 @@
 package io.renren.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 用户与水表绑定关系表
@@ -22,7 +22,7 @@ public class UserDeviceEntity implements Serializable {
 	/**
 	 * 用户id
 	 */
-	@TableId
+	@TableId(type = IdType.INPUT)
 	private String userId;
 	/**
 	 * 水表编号

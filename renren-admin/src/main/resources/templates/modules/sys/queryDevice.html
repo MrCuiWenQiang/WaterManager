@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>设备查看</title>
+    <#include "/header.html">
+</head>
+<body>
+<div id="rrapp" >
+    <div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+        <input type="text" id="userId" value="${userId}" hidden="false">
+    </div>
+
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/sys/queryDevice.js?_${.now?long}"></script>
+</body>
+</html>

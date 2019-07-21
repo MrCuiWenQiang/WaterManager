@@ -6,6 +6,8 @@ import java.util.Map;
 
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.modules.sys.entity.SysDictEntity;
+import io.renren.modules.sys.entity.request.BindEntity;
+import io.renren.modules.sys.entity.request.CleanEntity;
 import io.renren.modules.sys.service.SysDictService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,22 @@ public class WarterDeviceController {
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = warterDeviceService.queryPage(params);
 
+        return R.ok().put("page", page);
+    }
+
+    //查询未绑定的数据
+    @RequestMapping("/noBindlist")
+    public R noBindlist(@RequestParam Map<String, Object> params){
+        PageUtils page = warterDeviceService.querynoBindDeviceList(params);
+        return R.ok().put("page", page);
+    }
+
+    /**
+     * 查询某用户下的设备
+     */
+    @RequestMapping("/userList")
+    public R userList(@RequestParam Map<String, Object> params){
+        PageUtils page = warterDeviceService.queryUserDeviceList(params);
         return R.ok().put("page", page);
     }
 
@@ -99,4 +117,19 @@ public class WarterDeviceController {
         return R.ok();
     }
 
+    /**
+     * 用户和设备绑定
+     * @return
+     */
+    @RequestMapping("/bind")
+    public R bind(@RequestBody BindEntity bindEntity){
+       R r =  warterDeviceService.bind(bindEntity);
+       return r;
+    }
+
+    @RequestMapping("/clean")
+    public R clean(@RequestBody CleanEntity entity){
+        R r =  warterDeviceService.clean(entity.getNo());
+        return r;
+    }
 }
