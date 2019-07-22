@@ -5,6 +5,7 @@ import io.renren.common.utils.R;
 import io.renren.modules.sys.entity.DbUserDeviceEntity;
 import io.renren.modules.sys.entity.TabUserEntity;
 import io.renren.modules.sys.entity.UserDeviceEntity;
+import io.renren.modules.sys.entity.request.BaseApiEntity;
 import io.renren.modules.sys.entity.request.BindEntity;
 import io.renren.modules.sys.service.TabUserService;
 import io.renren.modules.sys.service.UserDeviceService;
@@ -70,6 +71,27 @@ public class WarterDeviceServiceImpl extends ServiceImpl<WarterDeviceDao, Warter
         Integer totalCount = baseMapper.queryUserDeviceListCount(params);
 
         return new PageUtils(datas, totalCount, limit, curPage);
+    }
+
+    @Override
+    public R saveorUpdate(WarterDeviceEntity params) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("no",params.getNo());
+        int count = baseMapper.selectCount(queryWrapper);
+        if (count>0){
+            return R.error("设备编号已存在");
+        }
+        if (params.getId()!=-1){
+            baseMapper.updateById(params);
+        }else {
+            baseMapper.insert(params);
+        }
+        return R.ok("操作完成");
+    }
+
+    @Override
+    public List<WarterDeviceEntity> queryUserDv(BaseApiEntity params) {
+        return baseMapper.queryByUserId(params.getUserId());
     }
 
     @Override

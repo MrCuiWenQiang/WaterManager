@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,10 +24,11 @@ public class WarterDeviceEntity implements Serializable {
 	 * 
 	 */
 	@TableId
-	private Integer id;
+	private Integer id =-1;
 	/**
 	 * 水表编号
 	 */
+	@NotNull(message = "编号不能为空")
 	private String no;
 	/**
 	 * 名称

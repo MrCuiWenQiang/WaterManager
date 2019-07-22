@@ -16,5 +16,7 @@ import java.util.Map;
 public interface UserDeviceService extends IService<UserDeviceEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+
 }
 

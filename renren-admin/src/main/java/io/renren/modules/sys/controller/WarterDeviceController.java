@@ -89,9 +89,10 @@ public class WarterDeviceController {
     @RequestMapping("/save")
     @RequiresPermissions("sys:warterdevice:save")
     public R save(@RequestBody WarterDeviceEntity warterDevice){
-        warterDeviceService.save(warterDevice);
+        ValidatorUtils.validateEntity(warterDevice);
+        R r = warterDeviceService.saveorUpdate(warterDevice);
 
-        return R.ok();
+        return r;
     }
 
     /**
@@ -101,9 +102,9 @@ public class WarterDeviceController {
     @RequiresPermissions("sys:warterdevice:update")
     public R update(@RequestBody WarterDeviceEntity warterDevice){
         ValidatorUtils.validateEntity(warterDevice);
-        warterDeviceService.updateById(warterDevice);
+        R r = warterDeviceService.saveorUpdate(warterDevice);
         
-        return R.ok();
+        return r;
     }
 
     /**

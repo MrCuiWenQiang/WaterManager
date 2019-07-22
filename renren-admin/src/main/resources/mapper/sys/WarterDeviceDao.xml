@@ -71,4 +71,8 @@ FROM
 
 	wd.no NOT IN(SELECT no FROM tb_user_device ORDER BY no)
     </select>
+
+    <select id="queryByUserId" resultMap="warterDeviceMap">
+        SELECT * FROM tb_user_device  ud LEFT JOIN tb_warter_device wd on wd.no=ud.no WHERE ud.user_id = #{userid}
+    </select>
 </mapper>

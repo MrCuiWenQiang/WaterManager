@@ -23,6 +23,8 @@ public interface WarterDeviceDao extends BaseMapper<WarterDeviceEntity> {
     // TODO: 2019/7/21 0021 效率不高
     List<WarterDeviceEntity> querynoBindDeviceList(Map<String, Object> params);
 
+    List<WarterDeviceEntity> queryByUserId(String userId);
+
    int  queryUserDeviceListCount(Map<String, Object> params);
    int querynoBindDeviceListCount(Map<String, Object> params);
 

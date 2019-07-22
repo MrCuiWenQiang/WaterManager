@@ -49,7 +49,9 @@ $(function () {
         	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
         }
     });
-   
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+    });
 });
 
 var vm = new Vue({
@@ -108,7 +110,11 @@ var vm = new Vue({
 		    $('#btnSaveOrUpdate').button('loading').delay(1000).queue(function() {
                 var url = vm.warterDevice.id == null ? "sys/warterdevice/save" : "sys/warterdevice/update";
                 var status = $('#statusselect  option:selected').val();
+                var installDate = $('#installdate').val();
+                var replaceDate = $('#replacedate').val();
                 vm.warterDevice.status=status;
+                vm.warterDevice.installDate=installDate;
+                vm.warterDevice.replaceDate=replaceDate;
                 $.ajax({
                     type: "POST",
                     url: baseURL + url,

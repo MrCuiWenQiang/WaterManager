@@ -2,7 +2,9 @@ package io.renren.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import io.renren.common.utils.PageUtils;
+import io.renren.common.utils.R;
 import io.renren.modules.sys.entity.TabUserEntity;
+import io.renren.modules.sys.entity.request.LoginEntity;
 
 import java.util.Map;
 
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface TabUserService extends IService<TabUserEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    R login(LoginEntity params);
 }
 

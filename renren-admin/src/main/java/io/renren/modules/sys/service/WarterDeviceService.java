@@ -5,6 +5,7 @@ import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 import io.renren.modules.sys.entity.DbUserDeviceEntity;
 import io.renren.modules.sys.entity.WarterDeviceEntity;
+import io.renren.modules.sys.entity.request.BaseApiEntity;
 import io.renren.modules.sys.entity.request.BindEntity;
 
 import java.util.List;
@@ -26,5 +27,9 @@ public interface WarterDeviceService extends IService<WarterDeviceEntity> {
     PageUtils querynoBindDeviceList(Map<String, Object> params);
 
     PageUtils queryUserDeviceList(Map<String, Object> params);
+
+    R saveorUpdate(WarterDeviceEntity params);
+
+    List<WarterDeviceEntity> queryUserDv(BaseApiEntity params);
 }
 
