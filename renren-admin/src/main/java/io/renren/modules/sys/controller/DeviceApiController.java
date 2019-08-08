@@ -6,6 +6,7 @@ import io.renren.modules.sys.entity.WarterDeviceEntity;
 import io.renren.modules.sys.entity.request.BaseApiEntity;
 import io.renren.modules.sys.entity.request.BindEntity;
 import io.renren.modules.sys.entity.request.LoginEntity;
+import io.renren.modules.sys.entity.request.SubscriptionEntity;
 import io.renren.modules.sys.service.TabUserService;
 import io.renren.modules.sys.service.UserDeviceService;
 import io.renren.modules.sys.service.WarterDeviceService;
@@ -35,5 +36,11 @@ public class DeviceApiController {
     public R bind(@RequestBody BindEntity params){
         ValidatorUtils.validateEntity(params);
         return warterDeviceService.bind(params);
+    }
+
+    @RequestMapping(value = "/bind",method = RequestMethod.POST)
+    public R subscription(@RequestBody SubscriptionEntity params){
+
+        return R.ok();
     }
 }
